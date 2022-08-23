@@ -1,7 +1,10 @@
-function App() {
+import { Counter } from './components/Counter'
 
+function App () {
   return (
-    <h1>Hola mundo</h1>
+    <div className='p-5 m-0'>
+      <Counter />
+    </div>
   )
 }
 
