@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Button } from '../components/Button'
+import { Statistics } from '../components/Statistics'
 
 export const FeedbackPage = () => {
   const [review, setReviews] = useState({
@@ -69,25 +70,14 @@ export const FeedbackPage = () => {
         />
       </div>
 
-      <div>
-        <h2 className='text-2xl'>Statistics</h2>
-        <p>Good: {review.good}</p>
-      </div>
-      <div>
-        <p>Neutral: {review.neutral}</p>
-      </div>
-      <div>
-        <p>Bad: {review.bad}</p>
-      </div>
-      <div>
-        <p>Total: {review.total}</p>
-      </div>
-      <div>
-        <p>Average Score: {averageScore || 0}</p>
-      </div>
-      <div>
-        <p>Positive Porcentage: {positivePorcentage || 0}%</p>
-      </div>
+      <Statistics
+        good={review.good}
+        bad={review.bad}
+        neutral={review.neutral}
+        total={review.total}
+        averageScore={averageScore}
+        positivePorcentage={positivePorcentage}
+      />
     </div>
   )
 }
