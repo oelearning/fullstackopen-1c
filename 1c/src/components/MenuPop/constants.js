@@ -14,5 +14,9 @@ export const LINKS = [
   {
     name: 'notes',
     path: '/notes'
+  },
+  {
+    name: 'feedback',
+    path: '/feedback'
   }
 ]
