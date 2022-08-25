@@ -1,11 +1,7 @@
-import { Counter } from './components/Counter'
+import { AppRouter } from './router/AppRouter'
 
-function App () {
+export const App = () => {
   return (
-    <div className='p-5 m-0'>
-      <Counter />
-    </div>
+    <AppRouter />
   )
 }
-
-export default App

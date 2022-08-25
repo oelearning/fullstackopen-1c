@@ -1,5 +1,7 @@
+import { MenuPopup } from '../components/MenuPop'
+
 export const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <MenuPopup />
   )
 }
