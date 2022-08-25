@@ -3,7 +3,8 @@ import {
   HomePage,
   CounterPage,
   CountersPage,
-  NotesPage
+  NotesPage,
+  FeedbackPage
 } from '../pages'
 
 export const AppRouter = () => {
@@ -14,6 +15,7 @@ export const AppRouter = () => {
         <Route path='/counter' element={<CounterPage />} />
         <Route path='/counters' element={<CountersPage />} />
         <Route path='/notes' element={<NotesPage />} />
+        <Route path='/feedback' element={<FeedbackPage />} />
       </Routes>
     </BrowserRouter>
   )
