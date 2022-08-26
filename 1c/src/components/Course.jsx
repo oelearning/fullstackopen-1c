@@ -1,4 +1,4 @@
-export const Course = ({ name, parts }) => {
+export const Course = ({ name, parts = [] }) => {
   const exercisesArr = []
   parts.map(({ exercises }) => exercisesArr.push(exercises))
 
