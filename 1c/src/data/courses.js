@@ -43,22 +43,17 @@ export const courses = [
   },
   {
     id: 3,
-    name: 'Frontend bootcamp',
+    name: 'Nextjs',
     parts: [
       {
-        name: 'Fundamentals of React',
+        name: 'Fundamentals of Next',
         exercises: 3,
         id: 1
       },
       {
-        name: 'Using props to pass data',
+        name: 'Server side rendering',
         exercises: 2,
         id: 2
-      },
-      {
-        name: 'State of a component',
-        exercises: 22,
-        id: 3
       }
     ]
   }
