@@ -70,14 +70,18 @@ export const FeedbackPage = () => {
         />
       </div>
 
-      <Statistics
-        good={review.good}
-        bad={review.bad}
-        neutral={review.neutral}
-        total={review.total}
-        averageScore={averageScore}
-        positivePorcentage={positivePorcentage}
-      />
+      <h2 className='text-2xl'>Statistics</h2>
+      {review.total === 0
+        ? <p>No feedback given</p>
+        : <Statistics
+            good={review.good}
+            bad={review.bad}
+            neutral={review.neutral}
+            total={review.total}
+            averageScore={averageScore}
+            positivePorcentage={positivePorcentage}
+          />}
+
     </div>
   )
 }
