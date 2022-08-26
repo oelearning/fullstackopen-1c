@@ -40,5 +40,26 @@ export const courses = [
         id: 3
       }
     ]
+  },
+  {
+    id: 3,
+    name: 'Frontend bootcamp',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 3,
+        id: 1
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 2,
+        id: 2
+      },
+      {
+        name: 'State of a component',
+        exercises: 22,
+        id: 3
+      }
+    ]
   }
 ]
