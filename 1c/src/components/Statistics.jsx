@@ -8,7 +8,6 @@ export const Statistics = ({
 }) => {
   return (
     <div>
-      <h2 className='text-2xl'>Statistics</h2>
       <div>
         <p>Good: {good}</p>
       </div>
