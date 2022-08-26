@@ -16,6 +16,8 @@ export const AppRouter = () => {
         <Route path='/counters' element={<CountersPage />} />
         <Route path='/notes' element={<NotesPage />} />
         <Route path='/feedback' element={<FeedbackPage />} />
+
+        <Route path='/*' element={<HomePage />} />
       </Routes>
     </BrowserRouter>
   )
