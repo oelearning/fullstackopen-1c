@@ -18,23 +18,28 @@ export const Counter = () => {
     <div>
       <h1 className='text-xl'>{counter}</h1>
       <Button
-        text='Sumar'
         onclick={() => handleClick(1)}
         bgcolor='bg-blue-600'
         textcolor='text-white'
-      />
+      >
+        Sumar
+      </Button>
+
       <Button
-        text='Restar'
         onclick={() => handleClick(-1)}
         bgcolor='bg-green-600'
         textcolor='text-white'
-      />
+      >
+        Restar
+      </Button>
+
       <Button
-        text='Reset'
         onclick={() => handleClick(0)}
         bgcolor='bg-red-600'
         textcolor='text-white'
-      />
+      >
+        Reset
+      </Button>
       <h2>{isEven ? 'Es par' : 'Es impar'}</h2>
     </div>
   )
