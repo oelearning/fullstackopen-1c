@@ -6,7 +6,13 @@ export const PhoneBookPage = () => {
   const [contacts, setContacts] = useState([])
   const [newName, setNewName] = useState('')
   const [newPhone, setNewPhone] = useState('')
-  const [showAll, setShowAll] = useState(true)
+  const [search, setSearch] = useState('')
+  const [searchContact, setSearchContact] = useState(true)
+
+  const handleSearchChange = (e) => {
+    const listener = e.target.value
+    setSearch(listener)
+  }
 
   const handleNameChange = (e) => {
     const listener = e.target.value
@@ -27,42 +33,56 @@ export const PhoneBookPage = () => {
       id: contacts.length + 1
     }
 
-    setContacts(contacts.concat(nameObject))
-    setNewName('')
-    setNewPhone('')
+    const namesArr = contacts.map(({ name }) => name)
+    const phonesArr = contacts.map(({ phone }) => phone)
+    const validateDuplicateName = namesArr.includes(nameObject.name)
+    const validateDuplicatePhone = phonesArr.includes(nameObject.phone)
+
+    if (validateDuplicateName || validateDuplicatePhone) {
+      console.log('Duplicate value')
+    } else {
+      setContacts(contacts.concat(nameObject))
+      setNewName('')
+      setNewPhone('')
+    }
   }
 
-  const contactsToShow = showAll
+  const handleSearch = (e) => {
+    e.preventDefault()
+    setSearchContact(!searchContact)
+  }
+
+  const searchToShow = searchContact
     ? contacts
-    : contacts.filter(contact => contact.important === true)
-
-  console.log(contactsToShow)
-
-  const togglecontactsToShow = () => {
-    setShowAll(!showAll)
-  }
+    : contacts.filter(({ name }) => name === search)
 
   return (
     <div className='p-10'>
       <div className='flex justify-between items-center'>
-        <h1 className='text-3xl pb-5 font-medium'>Phone Book</h1>
-        <div>
+        <h1 className='text-3xl font-medium'>Phone Book</h1>
+        <form onSubmit={handleSearch} className='flex'>
+          <input
+            type='text'
+            placeholder='buscar'
+            onChange={handleSearchChange}
+            value={search}
+            className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+          />
           <Button
             bgcolor='bg-purple-600'
             hover='bg-purple-700'
             textcolor='text-white'
-            onclick={togglecontactsToShow}
           >
-            Show {showAll ? 'important' : 'all'}
+            {searchContact ? 'Search' : 'Clear'}
           </Button>
-        </div>
+        </form>
       </div>
-      <div className='py-5'>
+      <div className='py-7'>
         {
-        (typeof contactsToShow === 'undefined' || contactsToShow.length === 0)
+        (typeof contacts === 'undefined' || contacts.length === 0)
           ? <p>There are not names to show</p>
           : <ul className='space-y-3'>
-            {contactsToShow?.map(({ id, name, phone }) => (
+            {searchToShow?.map(({ id, name, phone }) => (
               <Phone key={id} name={name} phone={phone} />
             ))}
           </ul>
