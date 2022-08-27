@@ -22,5 +22,9 @@ export const LINKS = [
   {
     name: 'courses',
     path: '/courses'
+  },
+  {
+    name: 'phonebook',
+    path: '/phonebook'
   }
 ]
