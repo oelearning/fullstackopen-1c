@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Button } from '../components/Button'
 import { Note } from '../components/Note'
 import { notes } from '../data/notes'
 
@@ -8,7 +9,8 @@ export const NotesPage = () => {
   const [showAll, setShowAll] = useState(true)
 
   const handleNoteChange = (e) => {
-    setNewNote(e.target.value)
+    const eventListener = e.target.value
+    setNewNote(eventListener)
   }
 
   const addNote = (e) => {
@@ -35,12 +37,14 @@ export const NotesPage = () => {
     <div className='p-10 space-y-5'>
       <h1 className='text-3xl pb-5 font-medium'>Notes</h1>
       <div>
-        <button
-          className='bg-purple-600 text-white py-2 px-5 rounded hover:bg-purple-700'
-          onClick={toggleNotesToShow}
+        <Button
+          bgcolor='bg-purple-600'
+          hover='bg-purple-700'
+          textcolor='text-white'
+          onclick={toggleNotesToShow}
         >
           Show {showAll ? 'important' : 'all'}
-        </button>
+        </Button>
       </div>
       {
         (typeof notesToShow === 'undefined' || notesToShow.length === 0)
@@ -61,11 +65,13 @@ export const NotesPage = () => {
               onChange={handleNoteChange}
               className='appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-600 flex-1'
             />
-            <button
-              className='bg-blue-600 text-white py-2 px-5 rounded hover:bg-blue-700'
+            <Button
+              bgcolor='bg-blue-600'
+              hover='bg-blue-700'
+              textcolor='text-white'
             >
               Save
-            </button>
+            </Button>
           </div>
         </div>
       </form>
