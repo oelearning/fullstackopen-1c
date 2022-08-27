@@ -33,6 +33,12 @@ export const PhoneBookPage = () => {
       id: contacts.length + 1
     }
 
+    if (nameObject.name === '') {
+      return console.log('Missing name')
+    } else if (nameObject.phone === '') {
+      return console.log('Missing phone')
+    }
+
     const namesArr = contacts.map(({ name }) => name)
     const phonesArr = contacts.map(({ phone }) => phone)
     const validateDuplicateName = namesArr.includes(nameObject.name)
