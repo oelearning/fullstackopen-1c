@@ -43,22 +43,27 @@ export const CountersPage = () => {
         <div className='space-x-5'>
           <Button
             onclick={handleLeftClick}
-            text='Left'
             bgcolor='bg-blue-600'
             textcolor='text-white'
-          />
+          >
+            Left
+          </Button>
+
           <Button
             onclick={handleResetClick}
-            text='Reset'
             bgcolor='bg-red-600'
             textcolor='text-white'
-          />
+          >
+            Reset
+          </Button>
+
           <Button
             onclick={handleRightClick}
-            text='Right'
             bgcolor='bg-green-600'
             textcolor='text-white'
-          />
+          >
+            Right
+          </Button>
         </div>
         <div>
           {clicks.right}
