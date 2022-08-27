@@ -40,21 +40,24 @@ export const CountersPage = () => {
         <div>
           {clicks.left}
         </div>
-        <div>
+        <div className='space-x-5'>
           <Button
             onclick={handleLeftClick}
             text='Left'
-            color='bg-blue-600'
+            bgcolor='bg-blue-600'
+            textcolor='text-white'
           />
           <Button
             onclick={handleResetClick}
             text='Reset'
-            color='bg-red-600'
+            bgcolor='bg-red-600'
+            textcolor='text-white'
           />
           <Button
             onclick={handleRightClick}
             text='Right'
-            color='bg-green-600'
+            bgcolor='bg-green-600'
+            textcolor='text-white'
           />
         </div>
         <div>
