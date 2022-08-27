@@ -20,17 +20,20 @@ export const Counter = () => {
       <Button
         text='Sumar'
         onclick={() => handleClick(1)}
-        color='bg-blue-600'
+        bgcolor='bg-blue-600'
+        textcolor='text-white'
       />
       <Button
         text='Restar'
         onclick={() => handleClick(-1)}
-        color='bg-green-600'
+        bgcolor='bg-green-600'
+        textcolor='text-white'
       />
       <Button
         text='Reset'
         onclick={() => handleClick(0)}
-        color='bg-red-600'
+        bgcolor='bg-red-600'
+        textcolor='text-white'
       />
       <h2>{isEven ? 'Es par' : 'Es impar'}</h2>
     </div>
