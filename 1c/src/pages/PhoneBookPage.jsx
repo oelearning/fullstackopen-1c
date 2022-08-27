@@ -7,7 +7,7 @@ export const PhoneBookPage = () => {
   const [newName, setNewName] = useState('')
   const [newPhone, setNewPhone] = useState('')
   const [search, setSearch] = useState('')
-  const [searchContact, setSearchContact] = useState(true)
+  const [showAll, setShowAll] = useState(true)
 
   const handleSearchChange = (e) => {
     const listener = e.target.value
@@ -49,10 +49,10 @@ export const PhoneBookPage = () => {
 
   const handleSearch = (e) => {
     e.preventDefault()
-    setSearchContact(!searchContact)
+    setShowAll(!showAll)
   }
 
-  const searchToShow = searchContact
+  const contactsToShow = showAll
     ? contacts
     : contacts.filter(({ name }) => name === search)
 
@@ -73,7 +73,7 @@ export const PhoneBookPage = () => {
             hover='bg-purple-700'
             textcolor='text-white'
           >
-            {searchContact ? 'Search' : 'Clear'}
+            {showAll ? 'Search' : 'Clear'}
           </Button>
         </form>
       </div>
@@ -82,7 +82,7 @@ export const PhoneBookPage = () => {
         (typeof contacts === 'undefined' || contacts.length === 0)
           ? <p>There are not names to show</p>
           : <ul className='space-y-3'>
-            {searchToShow?.map(({ id, name, phone }) => (
+            {contactsToShow?.map(({ id, name, phone }) => (
               <Phone key={id} name={name} phone={phone} />
             ))}
           </ul>
