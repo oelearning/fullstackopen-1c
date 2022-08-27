@@ -5,7 +5,8 @@ import {
   CountersPage,
   NotesPage,
   FeedbackPage,
-  CoursesPage
+  CoursesPage,
+  PhoneBookPage
 } from '../pages'
 
 export const AppRouter = () => {
@@ -18,6 +19,7 @@ export const AppRouter = () => {
         <Route path='/notes' element={<NotesPage />} />
         <Route path='/feedback' element={<FeedbackPage />} />
         <Route path='/courses' element={<CoursesPage />} />
+        <Route path='/phonebook' element={<PhoneBookPage />} />
 
         <Route path='/*' element={<HomePage />} />
       </Routes>
