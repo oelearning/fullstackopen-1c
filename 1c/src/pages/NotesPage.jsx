@@ -50,8 +50,8 @@ export const NotesPage = () => {
         (typeof notesToShow === 'undefined' || notesToShow.length === 0)
           ? <p>There are not notes to show</p>
           : <ul className='space-y-3'>
-            {notesToShow?.map(({ id, content }) => (
-              <Note key={id} content={content} />
+            {notesToShow?.map(({ id, title, body }) => (
+              <Note key={id} title={title} body={body} />
             ))}
           </ul>
       }
