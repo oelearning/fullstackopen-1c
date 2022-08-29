@@ -36,10 +36,12 @@ export const NotesPage = () => {
 
   const addNote = (e) => {
     e.preventDefault()
+    axios.post('https://jsonplaceholder.typicode.com/posts')
+
     const noteObject = {
       title: newTitle,
       body: newBody,
-      id: notesList.length + 1
+      userId: notesList.length + 1
     }
 
     setNotesList(notesList.concat(noteObject))
