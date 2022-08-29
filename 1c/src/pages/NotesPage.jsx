@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Button } from '../components/Button'
+import { Loading } from '../components/Loading'
 import { Note } from '../components/Note'
+import axios from 'axios'
 
 export const NotesPage = () => {
   const [notesList, setNotesList] = useState([])
@@ -8,16 +10,15 @@ export const NotesPage = () => {
   const [newBody, setNewBody] = useState('')
   const [loading, setLoading] = useState(false)
 
-  console.log(notesList)
-
   useEffect(() => {
     setLoading(true)
 
     setTimeout(() => {
-      fetch('https://jsonplaceholder.typicode.com/posts')
-        .then(response => response.json())
-        .then(json => {
-          setNotesList(json)
+      axios
+        .get('https://jsonplaceholder.typicode.com/posts')
+        .then(response => {
+          const { data } = response
+          setNotesList(data)
           setLoading(false)
         })
     }, 2000)
@@ -49,7 +50,7 @@ export const NotesPage = () => {
   return (
     <div className='p-10 space-y-5 mb-48'>
       <h1 className='text-3xl pb-5 font-medium'>Notes</h1>
-      {loading ? 'Loading...' : ''}
+      {loading ? <Loading /> : ''}
 
       <ul className='space-y-3'>
         {notesList?.map(({ id, title, body }) => (
