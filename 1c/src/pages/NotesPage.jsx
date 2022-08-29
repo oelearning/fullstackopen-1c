@@ -13,15 +13,13 @@ export const NotesPage = () => {
   useEffect(() => {
     setLoading(true)
 
-    setTimeout(() => {
-      axios
-        .get('https://jsonplaceholder.typicode.com/posts')
-        .then(response => {
-          const { data } = response
-          setNotesList(data)
-          setLoading(false)
-        })
-    }, 2000)
+    axios
+      .get('https://jsonplaceholder.typicode.com/posts')
+      .then(response => {
+        const { data } = response
+        setNotesList(data)
+        setLoading(false)
+      })
   }, [])
 
   const handleTitleChange = (e) => {
@@ -36,15 +34,18 @@ export const NotesPage = () => {
 
   const addNote = (e) => {
     e.preventDefault()
-    axios.post('https://jsonplaceholder.typicode.com/posts')
-
     const noteObject = {
       title: newTitle,
       body: newBody,
       userId: notesList.length + 1
     }
 
-    setNotesList(notesList.concat(noteObject))
+    axios
+      .post('https://jsonplaceholder.typicode.com/posts', noteObject)
+      .then(response => {
+        const { data } = response
+        setNotesList(prevNotes => prevNotes.concat(data))
+      })
     setNewTitle('')
     setNewBody('')
   }
