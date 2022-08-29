@@ -8,14 +8,19 @@ export const NotesPage = () => {
   const [newBody, setNewBody] = useState('')
   const [loading, setLoading] = useState(false)
 
+  console.log(notesList)
+
   useEffect(() => {
     setLoading(true)
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(response => response.json())
-      .then(json => {
-        setNotesList(json)
-        setLoading(false)
-      })
+
+    setTimeout(() => {
+      fetch('https://jsonplaceholder.typicode.com/posts')
+        .then(response => response.json())
+        .then(json => {
+          setNotesList(json)
+          setLoading(false)
+        })
+    }, 2000)
   }, [])
 
   const handleTitleChange = (e) => {
@@ -38,12 +43,13 @@ export const NotesPage = () => {
 
     setNotesList(notesList.concat(noteObject))
     setNewTitle('')
+    setNewBody('')
   }
 
   return (
-    <div className='p-10 space-y-5'>
+    <div className='p-10 space-y-5 mb-48'>
       <h1 className='text-3xl pb-5 font-medium'>Notes</h1>
-      {loading ? <p>Cargando...</p> : ''}
+      {loading ? 'Loading...' : ''}
 
       <ul className='space-y-3'>
         {notesList?.map(({ id, title, body }) => (
@@ -51,7 +57,7 @@ export const NotesPage = () => {
         ))}
       </ul>
 
-      <form onSubmit={addNote}>
+      <form onSubmit={addNote} className='fixed w-full h-48 bg-white bottom-0 left-0 p-5 border-t'>
         <div>
           <div className='space-y-4'>
             <input
