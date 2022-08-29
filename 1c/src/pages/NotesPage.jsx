@@ -1,13 +1,22 @@
-/* eslint-disable react/jsx-indent */
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '../components/Button'
 import { Note } from '../components/Note'
-import { notes } from '../data/notes'
 
 export const NotesPage = () => {
-  const [notesList, setNotesList] = useState(notes)
+  const [notesList, setNotesList] = useState([])
   const [newTitle, setNewTitle] = useState('')
   const [newBody, setNewBody] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    setLoading(true)
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(response => response.json())
+      .then(json => {
+        setNotesList(json)
+        setLoading(false)
+      })
+  }, [])
 
   const handleTitleChange = (e) => {
     const eventListener = e.target.value
@@ -34,15 +43,14 @@ export const NotesPage = () => {
   return (
     <div className='p-10 space-y-5'>
       <h1 className='text-3xl pb-5 font-medium'>Notes</h1>
-      {
-        (typeof notesList === 'undefined' || notesList.length === 0)
-          ? <p>There are not notes to show</p>
-          : <ul className='space-y-3'>
-            {notesList?.map(({ id, title, body }) => (
-              <Note key={id} title={title} body={body} />
-            ))}
-            </ul>
-      }
+      {loading ? <p>Cargando...</p> : ''}
+
+      <ul className='space-y-3'>
+        {notesList?.map(({ id, title, body }) => (
+          <Note key={id} title={title} body={body} />
+        ))}
+      </ul>
+
       <form onSubmit={addNote}>
         <div>
           <div className='space-y-4'>
@@ -55,7 +63,7 @@ export const NotesPage = () => {
             />
             <input
               type='text'
-              placeholder='Create new note'
+              placeholder='Create new body'
               value={newBody}
               onChange={handleBodyChange}
               className='appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-600 flex-1 w-full'
