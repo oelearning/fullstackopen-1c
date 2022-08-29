@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-tag-location */
 import { useState } from 'react'
 import { Button } from '../components/Button'
 import { Phone } from '../components/Phone'
