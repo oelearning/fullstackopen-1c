@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react'
 import { Button } from '../components/Button'
 import { Loading } from '../components/Loading'
 import { Note } from '../components/Note'
-import axios from 'axios'
+import { createNote } from '../services/notes/createNote'
+import { getAllNotes } from '../services/notes/getAllNotes'
 
 export const NotesPage = () => {
   const [notesList, setNotesList] = useState([])
@@ -13,11 +14,9 @@ export const NotesPage = () => {
   useEffect(() => {
     setLoading(true)
 
-    axios
-      .get('https://jsonplaceholder.typicode.com/posts')
-      .then(response => {
-        const { data } = response
-        setNotesList(data)
+    getAllNotes()
+      .then(notes => {
+        setNotesList(notes)
         setLoading(false)
       })
   }, [])
@@ -40,12 +39,11 @@ export const NotesPage = () => {
       userId: notesList.length + 1
     }
 
-    axios
-      .post('https://jsonplaceholder.typicode.com/posts', noteObject)
-      .then(response => {
-        const { data } = response
-        setNotesList(prevNotes => prevNotes.concat(data))
+    createNote(noteObject)
+      .then(newNote => {
+        setNotesList(prevNotes => prevNotes.concat(newNote))
       })
+
     setNewTitle('')
     setNewBody('')
   }
