@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-indent */
 import { useState } from 'react'
 import { Button } from '../components/Button'
 import { Note } from '../components/Note'
@@ -5,70 +6,65 @@ import { notes } from '../data/notes'
 
 export const NotesPage = () => {
   const [notesList, setNotesList] = useState(notes)
-  const [newNote, setNewNote] = useState('')
-  const [showAll, setShowAll] = useState(true)
+  const [newTitle, setNewTitle] = useState('')
+  const [newBody, setNewBody] = useState('')
 
-  const handleNoteChange = (e) => {
+  const handleTitleChange = (e) => {
     const eventListener = e.target.value
-    setNewNote(eventListener)
+    setNewTitle(eventListener)
+  }
+
+  const handleBodyChange = (e) => {
+    const eventListener = e.target.value
+    setNewBody(eventListener)
   }
 
   const addNote = (e) => {
     e.preventDefault()
     const noteObject = {
-      content: newNote,
-      import: Math.random() < 0.5,
+      title: newTitle,
+      body: newBody,
       id: notesList.length + 1
     }
 
     setNotesList(notesList.concat(noteObject))
-    setNewNote('')
-  }
-
-  const notesToShow = showAll
-    ? notesList
-    : notesList.filter(note => note.important === true)
-
-  const toggleNotesToShow = () => {
-    setShowAll(!showAll)
+    setNewTitle('')
   }
 
   return (
     <div className='p-10 space-y-5'>
       <h1 className='text-3xl pb-5 font-medium'>Notes</h1>
-      <div>
-        <Button
-          bgcolor='bg-purple-600'
-          hover='bg-purple-700'
-          textcolor='text-white'
-          onclick={toggleNotesToShow}
-        >
-          Show {showAll ? 'important' : 'all'}
-        </Button>
-      </div>
       {
-        (typeof notesToShow === 'undefined' || notesToShow.length === 0)
+        (typeof notesList === 'undefined' || notesList.length === 0)
           ? <p>There are not notes to show</p>
           : <ul className='space-y-3'>
-            {notesToShow?.map(({ id, title, body }) => (
+            {notesList?.map(({ id, title, body }) => (
               <Note key={id} title={title} body={body} />
             ))}
-          </ul>
+            </ul>
       }
       <form onSubmit={addNote}>
         <div>
-          <div className='w-full flex space-x-3'>
+          <div className='space-y-4'>
+            <input
+              type='text'
+              placeholder='Create new title'
+              value={newTitle}
+              onChange={handleTitleChange}
+              className='appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-600 flex-1 w-full'
+            />
             <input
               type='text'
               placeholder='Create new note'
-              value={newNote}
-              onChange={handleNoteChange}
-              className='appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-600 flex-1'
+              value={newBody}
+              onChange={handleBodyChange}
+              className='appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-600 flex-1 w-full'
             />
             <Button
               bgcolor='bg-blue-600'
               hover='bg-blue-700'
               textcolor='text-white'
+              width='w-full'
             >
               Save
             </Button>
